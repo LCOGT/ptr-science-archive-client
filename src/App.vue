@@ -9,8 +9,8 @@
           <b-img class="brand-image-large align-top d-none d-lg-inline-block"
             :src="this.$store.state.urls.brandImageLarge"
             :alt="this.$store.state.urls.brandImageAltText" />
-          <div id="name-large" class="name text-left pl-2 align-top d-none d-lg-inline-block">Science<br />Archive</div>
-          <div id="name-small" class="name text-left pl-2 align-top d-inline-block d-lg-none">Science<br />Archive</div>
+          <div id="name-large" class="name text-left pl-2 align-top d-none d-lg-inline-block">DataLab<br />Archive</div>
+          <div id="name-small" class="name text-left pl-2 align-top d-inline-block d-lg-none">DataLab<br />Archive</div>
           <div class="verticalLine d-inline-flex align-top pl-2" v-if="dataInspectorViewEnabled"></div>
           <div id="name-large" class="name text-left pl-2 align-top d-none d-lg-inline-block" v-if="dataInspectorViewEnabled">Data<br />Inspector</div>
           <div id="name-small" class="name text-left pl-2 align-top d-inline-block d-lg-none" v-if="dataInspectorViewEnabled">Data<br />Inspector</div>
@@ -23,7 +23,7 @@
             <b-nav-item :href="this.$store.state.urls.organizationHomepageUrl">{{ this.$store.state.urls.organizationHomepageText }}</b-nav-item>
             <b-nav-item :href="this.$store.state.urls.networkMonitoringPortalUrl" v-if="dataInspectorViewEnabled">Network Monitoring Portal</b-nav-item>
             <b-nav-item :href="this.$store.state.urls.roguesGalleryUrl" v-if="dataInspectorViewEnabled">Rogue's Gallery</b-nav-item>
-            <template v-if="userIsAuthenticated">
+            <!--<template v-if="userIsAuthenticated">
               <hr class="w-100 d-lg-none border-light" />
               <b-nav-text class="d-lg-none">
                 <i class="fas fa-user-alt"></i> <span class="font-weight-bold">{{ profile.username }}</span>
@@ -50,7 +50,7 @@
                 v-model="dataInspectorViewEnabled">Staff Data Inspector View</b-form-checkbox>
               </b-dropdown-form>
             </b-nav-item-dropdown>
-            <b-nav-item v-else class="d-none d-lg-block" :to="{ name: 'Login' }">Login</b-nav-item>
+            <b-nav-item v-else class="d-none d-lg-block" :to="{ name: 'Login' }">Login</b-nav-item>-->
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>

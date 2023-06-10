@@ -1,10 +1,10 @@
 {
   "observationPortalApiUrl": "http://127.0.0.1:8000/api",
-  "archiveApiUrl": "http://127.0.0.1:9500",
-  "simbadServiceUrl": "http://127.0.0.1:9800",
+  "archiveApiUrl": "https://archiveapi.photonranch.org",
+  "simbadServiceUrl": "https://simbad2k.lco.global",
   "thumbnailServiceUrl": "http://127.0.0.1:8500",
   "navbarBrandUrl": "",
-  "brandImageLarge": "",
+  "brandImageLarge": "./PTR-logo-photonranch.png",
   "brandImageSmall": "",
   "brandImageAltText": "Brand Image",
   "documentationUrl": "https://observatorycontrolsystem.github.io/integration/data_flow/",

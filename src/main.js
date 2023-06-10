@@ -18,7 +18,7 @@ $.ajax({
 }).done(function(data) {
   store.commit('setRuntimeConfig', {
     // default to the environment variable if present, else use the data in urls.json
-    observationPortalApiUrl: process.env.VUE_APP_OBSERVATION_PORTAL_API_URL || data.observationPortalApiUrl,
+    //observationPortalApiUrl: process.env.VUE_APP_OBSERVATION_PORTAL_API_URL || data.observationPortalApiUrl,
     archiveApiUrl: process.env.VUE_APP_ARCHIVE_API_URL || data.archiveApiUrl,
     simbadServiceUrl: process.env.VUE_APP_SIMBAD_SERVICE_URL || data.simbadServiceUrl,
     thumbnailServiceUrl: process.env.VUE_APP_THUMBNAIL_SERVICE_URL || data.thumbnailServiceUrl,

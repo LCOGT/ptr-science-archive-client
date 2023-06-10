@@ -194,6 +194,7 @@
                 <b-dropdown-divider />
                 <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="wget">wget script</b-form-radio>
                 <b-dropdown-divider />
+                <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="framesnumcopy">copy frames to clipboard</b-form-radio>
               </b-form-group>
             </b-dropdown-form>
           </b-dropdown>
@@ -343,7 +344,7 @@ import 'bootstrap-daterangepicker-v2/daterangepicker.css';
 import { OCSMixin, OCSUtil } from 'ocs-component-lib';
 import { DateTime } from 'luxon';
 import { itemInList, removeItemFromList } from '@/util.js';
-import { downloadZip, downloadWget } from '@/download.js';
+import { downloadZip, downloadWget, downloadFrameNum } from '@/download.js';
 import AggregatedOptionsSelect from '@/components/AggregatedOptionsSelect.vue';
 import SimpleSelect from '@/components/SimpleSelect.vue';
 import TargetLookup from '@/components/TargetLookup.vue';
@@ -390,10 +391,11 @@ export default {
       reductionLevelOptions: [
         { value: 'All', text: 'All' },
         { value: 'Raw', text: 'Raw' },
-        { value: 'ORAC', text: 'ORAC' },
+      //  { value: 'ORAC', text: 'ORAC' },
         { value: 'NRES Commissioning', text: 'NRES Commissioning' },
         { value: 'BANZAI', text: 'BANZAI' },
-        { value: 'BANZAI-NRES', text: 'BANZAI-NRES' }
+        { value: 'BANZAI-NRES', text: 'BANZAI-NRES' },
+        { value: 'EVA', text: 'EVA' },
       ],
       categorizedAggregatedOptions: {
         sites: {
@@ -634,9 +636,9 @@ export default {
           case 'Raw':
             this.queryParams.reduction_level = '0';
             break;
-          case 'ORAC':
-            this.queryParams.reduction_level = '90';
-            break;
+        // case 'ORAC':
+        //    this.queryParams.reduction_level = '90';
+        //    break;
           case 'BANZAI':
             this.queryParams.reduction_level = '91';
             break;
@@ -647,6 +649,9 @@ export default {
             break;
           case 'BANZAI-NRES':
             this.queryParams.reduction_level = '92';
+            break;
+          case 'EVA':
+            this.queryParams.reduction_level = '95';
             break;
           default:
             this.queryParams.reduction_level = '';
@@ -877,6 +882,9 @@ export default {
       else if (this.dltype === 'wget') {
         downloadWget(frameIds, archiveToken, this.archiveApiUrl);
       }
+      else if (this.dltype === 'framesnumcopy') {
+        downloadFrameNum(frameIds, archiveToken, this.archiveApiUrl);
+      }
     },
     getReductionLevelText: function (numericReductionLevel, telescopeId) {
       // Given the numeric reduction level and telescope ID, get a human readable representation of the reduction level.
@@ -885,8 +893,8 @@ export default {
           return 'All';
         case '0':
           return 'Raw';
-        case '90':
-          return 'ORAC';
+        //case '90':
+        //  return 'ORAC';
         // Due to BANZAI-Imaging and NRES Commissioning sharing the numeric reduction_level 91, we must differentiate them by telescope_id
         case '91':
           if (telescopeId === 'igla') {
@@ -896,6 +904,8 @@ export default {
           }
         case '92':
           return 'BANZAI-NRES';
+        case '95':
+          return 'EVA'
         default:
           return '';
       }

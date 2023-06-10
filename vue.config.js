@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   chainWebpack: config => {
     config.plugin('html').tap(args => {
-      args[0].title = 'Science Archive | Las Cumbres Observatory';
+      args[0].title = 'Datalab Archive | Las Cumbres Observatory | Photon Ranch';
       return args;
     });
   },

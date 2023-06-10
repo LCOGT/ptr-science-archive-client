@@ -2,8 +2,9 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
-import NotFound from '../components/NotFound.vue';
+//import NotFound from '../components/NotFound.vue';
 import store from '../store';
+import ArchiveDataTable from '@/components/ArchiveDataTable.vue';
 
 Vue.use(VueRouter);
 
@@ -39,8 +40,8 @@ const routes = [
   },
   {
     path: '*',
-    name: 'Not Found',
-    component: NotFound
+    name: 'Not archive',
+    component: ArchiveDataTable
   }
 ];
 
