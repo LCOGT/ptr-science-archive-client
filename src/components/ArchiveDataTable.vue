@@ -194,7 +194,7 @@
                 <b-dropdown-divider />
                 <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="wget">wget script</b-form-radio>
                 <b-dropdown-divider />
-                <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="framesnumcopy">copy frames to clipboard</b-form-radio>
+                <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="framesnumcopy">frame numbers to text file</b-form-radio>
               </b-form-group>
             </b-dropdown-form>
           </b-dropdown>
