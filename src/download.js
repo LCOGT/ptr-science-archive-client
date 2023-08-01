@@ -44,7 +44,7 @@ function downloadWget(frameIds, archiveToken, archiveRoot) {
 function copytoClipboardScript(frameIds, callback) {
   //$.execCommand("copy"), function(data) {
   $.get('scripts/download_scriptframenum.sh', function(data) {
-    var res = data.replace('FRAMELIST', frameIds.join('\n'));
+    var res = data.replace('FRAMELIST', frameIds.join(','));
     //if (archiveToken != null) {
     //  res = res.replace('AUTHTOKEN', archiveToken);
     //}
@@ -54,15 +54,14 @@ function copytoClipboardScript(frameIds, callback) {
 }
 
 function downloadFrameNum(frameIds) {
-  copytoClipboardScript(frameIds, function(data) {
-    navigator.clipboard.writeText(data);
-    alert("Copied the below frames to clipboard" + "\n" + data);
+  copytoClipboardScript(frameIds, async function(data) {
     var a = window.document.createElement('a');
-    a.href = window.URL.createObjectURL(new Blob([data], {type: 'text/plain'}));
-    a.download = 'framenumbers.txt';
+    a.href = window.URL.createObjectURL(new Blob([data], {type: 'text/csv'}));
+    a.download = 'framenumbers.csv';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    
+    navigator.clipboard.writeText(data);
+    alert("Copied the below frames to clipboard" + "\n" + data);
   });
 }
