@@ -396,6 +396,8 @@ export default {
         { value: 'BANZAI', text: 'BANZAI' },
         { value: 'BANZAI-NRES', text: 'BANZAI-NRES' },
         { value: 'EVA', text: 'EVA' },
+        { value: 'EVA-SmStack', text: 'EVA-SmartStack' },
+        { value: 'EVA-LoStack', text: 'EVA-LongStack' },
       ],
       categorizedAggregatedOptions: {
         sites: {
@@ -653,6 +655,12 @@ export default {
           case 'EVA':
             this.queryParams.reduction_level = '95';
             break;
+          case 'EVA-SmStack':
+            this.queryParams.reduction_level = '96';
+            break;
+          case 'EVA-LoStack':
+            this.queryParams.reduction_level = '97';
+            break;
           default:
             this.queryParams.reduction_level = '';
         }
@@ -905,7 +913,11 @@ export default {
         case '92':
           return 'BANZAI-NRES';
         case '95':
-          return 'EVA'
+          return 'EVA';
+        case '96':
+          return 'EVA-SmStack';
+        case '97':
+          return 'EVA-LoStack'
         default:
           return '';
       }
