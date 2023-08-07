@@ -1099,6 +1099,10 @@ th {
   position: relative;
 }
 
+.table td{
+  word-break: break-word;
+}
+
 .table-hover tbody tr:hover td {
     background: $tan;
 }
