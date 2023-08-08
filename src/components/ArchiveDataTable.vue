@@ -933,7 +933,7 @@ export default {
         defaultRange = timeRangeFilters['Today'];
       }
       const defaultQueryParams = {
-        reduction_level: '',
+        reduction_level: '96',
         proposal_id: '',
         instrument_id: '',
         target_name: '',
