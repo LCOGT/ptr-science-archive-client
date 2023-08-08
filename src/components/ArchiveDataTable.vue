@@ -174,11 +174,9 @@
                   :disabled="selected.length > maxFunpackedFrames"
                   :aria-describedby="ariaDescribedby"
                   name="dltype"
-                  value="zip-uncompressed"
-                >
+                  value="zip-uncompressed">
                   zip download (with uncompressed fits files)
                 </b-form-radio>
-
                 <b-dropdown-divider />
                 <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="zip-compressed">
                   zip download (with fz files)
@@ -377,7 +375,7 @@ export default {
   data: function() {
     let filterDateRangeOptions = this.getTimeRangeFilters();
     return {
-      dltype: 'zip-compressed',
+      dltype: 'zip-uncompressed',
       maxFunpackedFrames: 10,
       selected: [],
       selectedTimeRange: null,
