@@ -26,7 +26,7 @@
             </template>
           </date-picker>
         </b-form-group>
-        <aggregated-options-select
+        <!--<aggregated-options-select
           id="proposals"
           v-model="queryParams.proposal_id"
           :options="categorizedAggregatedOptions.proposals"
@@ -38,7 +38,7 @@
           @input="refreshData"
         >
           <template #label><b> Proposal </b><sup v-b-tooltip.hover.right class="blue" title="Log in to view your proposals">?</sup> </template>
-        </aggregated-options-select>
+        </aggregated-options-select>-->
 <!--         <b-form-group id="input-group-science-data" class="my-0">
           <b-form-checkbox
             id="checkbox-science-data"
@@ -600,11 +600,11 @@ export default {
               //  return[this.filterDateRangeOptions["Last Semester"][0].toJSDate(), this.filterDateRangeOptions["Last Semester"][1].toJSDate()]
               // }
               //},
-               {text: "Last 7 Days", 
-               onClick: () => {
-                return[this.filterDateRangeOptions["Last 7 Days"][0].toJSDate(), this.filterDateRangeOptions["Last 7 Days"][1].toJSDate()]
-               }
-              },
+              //{text: "Last 7 Days", 
+              // onClick: () => {
+              //  return[this.filterDateRangeOptions["Last 7 Days"][0].toJSDate(), this.filterDateRangeOptions["Last 7 Days"][1].toJSDate()]
+              // }
+              //},
                {text: "Last 30 Days", 
                onClick: () => {
                 return[this.filterDateRangeOptions["Last 30 Days"][0].toJSDate(), this.filterDateRangeOptions["Last 30 Days"][1].toJSDate()]
