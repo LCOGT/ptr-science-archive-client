@@ -19,6 +19,7 @@
             >
             <template v-slot:input>
               <div id="date-range-picker" class="border border-secondary rounded p-1 w-100 text-center">
+                Loading Last 7 days<br />
                 <i class="far fa-calendar"></i> {{ queryParams.start }} <br />
                 <i class="fas fa-caret-down"></i> {{ queryParams.end }}
               </div>
@@ -588,16 +589,17 @@ export default {
       }
     },
     datepickerShortcuts: function() {
-      return [{text: "This Semester", 
-               onClick: () => {
-                return[this.filterDateRangeOptions["This Semester"][0].toJSDate(), this.filterDateRangeOptions["This Semester"][1].toJSDate()]
-               }
-              },
-               {text: "Last Semester", 
-               onClick: () => {
-                return[this.filterDateRangeOptions["Last Semester"][0].toJSDate(), this.filterDateRangeOptions["Last Semester"][1].toJSDate()]
-               }
-              },
+      return [
+              // {text: "This Semester", 
+              // onClick: () => {
+              //  return[this.filterDateRangeOptions["This Semester"][0].toJSDate(), this.filterDateRangeOptions["This Semester"][1].toJSDate()]
+              // }
+              //},
+              // {text: "Last Semester", 
+              // onClick: () => {
+              //  return[this.filterDateRangeOptions["Last Semester"][0].toJSDate(), this.filterDateRangeOptions["Last Semester"][1].toJSDate()]
+              // }
+              //},
                {text: "Last 7 Days", 
                onClick: () => {
                 return[this.filterDateRangeOptions["Last 7 Days"][0].toJSDate(), this.filterDateRangeOptions["Last 7 Days"][1].toJSDate()]
@@ -746,7 +748,7 @@ export default {
     },
     onDatePickerChange: function() {
       let start = DateTime.fromJSDate(this.selectedTimeRange[0])
-      let end = DateTime.fromJSDate(this.selectedTimeRange[1])
+      let end = DateTime.fromJSDate(this.selectedTimeRange[7])
       
       this.queryParams.start = start.startOf('day').toFormat(this.getDateFormat());
       this.queryParams.end = end.endOf('day').toFormat(this.getDateFormat());
@@ -783,17 +785,17 @@ export default {
         filterDateRangeOptions['Last Semester'] = [DateTime.fromISO(lastSemester.start,  {zone: 'utc'}), DateTime.fromISO(lastSemester.end,  {zone: 'utc'})];
       }
       _.merge(filterDateRangeOptions, {
-        Today: [DateTime.utc().startOf('day'), DateTime.utc().endOf('day')],
-        Yesterday: [
-          DateTime
-            .utc()
-            .startOf('day')
-            .minus({ days : 1 }),
-          DateTime
-            .utc()
-            .endOf('day')
-            .minus({ days: 1 })
-        ],
+      //  Today: [DateTime.utc().startOf('day'), DateTime.utc().endOf('day')],
+      //  Yesterday: [
+      //    DateTime
+      //      .utc()
+      //      .startOf('day')
+      //      .minus({ days : 1 }),
+      //    DateTime
+      //      .utc()
+      //      .endOf('day')
+      //      .minus({ days: 1 })
+      //  ],
         'Last 7 Days': [
           DateTime
             .utc()
