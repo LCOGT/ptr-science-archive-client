@@ -38,7 +38,7 @@
         >
           <template #label><b> Proposal </b><sup v-b-tooltip.hover.right class="blue" title="Log in to view your proposals">?</sup> </template>
         </aggregated-options-select>
-        <b-form-group id="input-group-science-data" class="my-0">
+<!--         <b-form-group id="input-group-science-data" class="my-0">
           <b-form-checkbox
             id="checkbox-science-data"
             v-model="viewOnlyScienceData"
@@ -64,7 +64,7 @@
               ?
             </sup>
           </b-form-checkbox>
-        </b-form-group>
+        </b-form-group> -->
         <b-form-group id="input-group-basename" class="my-1">
           <template #label>
             <b>Image Name</b>
@@ -394,9 +394,9 @@ export default {
         { value: 'EVA', text: 'EVA' },
       //  { value: 'Raw', text: 'Raw' },
       //  { value: 'ORAC', text: 'ORAC' },
-        { value: 'NRES Commissioning', text: 'NRES Commissioning' },
-        { value: 'BANZAI', text: 'BANZAI' },
-        { value: 'BANZAI-NRES', text: 'BANZAI-NRES' },
+      //  { value: 'NRES Commissioning', text: 'NRES Commissioning' },
+      //  { value: 'BANZAI', text: 'BANZAI' },
+      //  { value: 'BANZAI-NRES', text: 'BANZAI-NRES' },
         
       ],
       categorizedAggregatedOptions: {
@@ -650,17 +650,17 @@ export default {
         // case 'ORAC':
         //    this.queryParams.reduction_level = '90';
         //    break;
-          case 'BANZAI':
-            this.queryParams.reduction_level = '91';
-            break;
+        //  case 'BANZAI':
+        //    this.queryParams.reduction_level = '91';
+        //   break;
           // NRES Commissioning and BANZAI-Imaging share the same reduction_level, so they must be differentiated by telescope_id
-          case 'NRES Commissioning':
-            this.queryParams.reduction_level = '91';
-            this.queryParams.telescope_id = 'igla';
-            break;
-          case 'BANZAI-NRES':
-            this.queryParams.reduction_level = '92';
-            break;
+        //  case 'NRES Commissioning':
+        //    this.queryParams.reduction_level = '91';
+        //    this.queryParams.telescope_id = 'igla';
+        //    break;
+        //  case 'BANZAI-NRES':
+        //    this.queryParams.reduction_level = '92';
+        //    break;
           default:
             this.queryParams.reduction_level = '96';
         }
@@ -916,8 +916,8 @@ export default {
           } else {
             return 'BANZAI';
           }
-        case '92':
-          return 'BANZAI-NRES';
+        //case '92':
+        //  return 'BANZAI-NRES';
         default:
           return 'EVA-SmStack';
       }
