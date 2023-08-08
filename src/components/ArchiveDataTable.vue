@@ -169,10 +169,6 @@
             <template #button-content>Download {{ selected.length }}</template>
             <b-dropdown-form>
               <b-form-group v-slot="{ ariaDescribedby }">
-                <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="zip-compressed">
-                  zip download (with compressed fits files)
-                </b-form-radio>
-                <b-dropdown-divider />
                 <b-form-radio
                   v-model="dltype"
                   :disabled="selected.length > maxFunpackedFrames"
@@ -181,6 +177,11 @@
                   value="zip-uncompressed"
                 >
                   zip download (with uncompressed fits files)
+                </b-form-radio>
+
+                <b-dropdown-divider />
+                <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="zip-compressed">
+                  zip download (with fz files)
                 </b-form-radio>
                 <b-dropdown-divider />
                 <b-form-radio
