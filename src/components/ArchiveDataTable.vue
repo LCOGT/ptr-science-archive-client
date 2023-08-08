@@ -388,15 +388,16 @@ export default {
         { value: '500', text: '500 rows per page' },
       ],
       reductionLevelOptions: [
-        { value: 'All', text: 'All' },
-        { value: 'Raw', text: 'Raw' },
+        //{ value: 'All', text: 'All' },
+        { value: 'EVA-SmStack', text: 'EVA-SmartStack' },
+        { value: 'EVA-LoStack', text: 'EVA-LongStack' },
+        { value: 'EVA', text: 'EVA' },
+      //  { value: 'Raw', text: 'Raw' },
       //  { value: 'ORAC', text: 'ORAC' },
         { value: 'NRES Commissioning', text: 'NRES Commissioning' },
         { value: 'BANZAI', text: 'BANZAI' },
         { value: 'BANZAI-NRES', text: 'BANZAI-NRES' },
-        { value: 'EVA', text: 'EVA' },
-        { value: 'EVA-SmStack', text: 'EVA-SmartStack' },
-        { value: 'EVA-LoStack', text: 'EVA-LongStack' },
+        
       ],
       categorizedAggregatedOptions: {
         sites: {
@@ -631,12 +632,21 @@ export default {
       set: function (reductionLevel) {
         if (this.queryParams.telescope_id === 'igla') this.queryParams.telescope_id = '';
         switch (reductionLevel) {
-          case 'All':
-            this.queryParams.reduction_level = '';
+          case 'EVA-SmStack':
+            this.queryParams.reduction_level = '96';
             break;
-          case 'Raw':
-            this.queryParams.reduction_level = '0';
+          case 'EVA-LoStack':
+            this.queryParams.reduction_level = '97';
             break;
+          case 'EVA':
+            this.queryParams.reduction_level = '95';
+            break;
+        //  case 'All':
+        //    this.queryParams.reduction_level = '';
+        //    break;
+        //  case 'Raw':
+        //    this.queryParams.reduction_level = '0';
+        //    break;
         // case 'ORAC':
         //    this.queryParams.reduction_level = '90';
         //    break;
@@ -651,17 +661,8 @@ export default {
           case 'BANZAI-NRES':
             this.queryParams.reduction_level = '92';
             break;
-          case 'EVA':
-            this.queryParams.reduction_level = '95';
-            break;
-          case 'EVA-SmStack':
-            this.queryParams.reduction_level = '96';
-            break;
-          case 'EVA-LoStack':
-            this.queryParams.reduction_level = '97';
-            break;
           default:
-            this.queryParams.reduction_level = '';
+            this.queryParams.reduction_level = '96';
         }
       }
     },
@@ -896,10 +897,16 @@ export default {
     getReductionLevelText: function (numericReductionLevel, telescopeId) {
       // Given the numeric reduction level and telescope ID, get a human readable representation of the reduction level.
       switch (numericReductionLevel) {
-        case '':
-          return 'All';
-        case '0':
-          return 'Raw';
+        case '96':
+          return 'EVA-SmStack';
+        case '97':
+          return 'EVA-LoStack';
+        case '95':
+          return 'EVA';
+        //case '':
+        //  return 'All';
+        //case '0':
+        //  return 'Raw';
         //case '90':
         //  return 'ORAC';
         // Due to BANZAI-Imaging and NRES Commissioning sharing the numeric reduction_level 91, we must differentiate them by telescope_id
@@ -911,14 +918,8 @@ export default {
           }
         case '92':
           return 'BANZAI-NRES';
-        case '95':
-          return 'EVA';
-        case '96':
-          return 'EVA-SmStack';
-        case '97':
-          return 'EVA-LoStack'
         default:
-          return '';
+          return 'EVA-SmStack';
       }
     },
     initializeDefaultQueryParams: function() {
