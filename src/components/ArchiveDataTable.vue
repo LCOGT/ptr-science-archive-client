@@ -925,12 +925,12 @@ export default {
     initializeDefaultQueryParams: function() {
       let timeRangeFilters = this.getTimeRangeFilters();
       let defaultRange;
-      // If the semester is available, use that to set the default range. Otherwise set the default range to today,
+      // If the semester is available, use that to set the default range. Otherwise set the default range to Last 7 days,
       // which is guaranteed to be in the time range filters.
       if (timeRangeFilters['This Semester']) {
         defaultRange = timeRangeFilters['This Semester'];
       } else {
-        defaultRange = timeRangeFilters['Today'];
+        defaultRange = timeRangeFilters['Last 7 Days'];
       }
       const defaultQueryParams = {
         reduction_level: '96',
