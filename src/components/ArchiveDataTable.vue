@@ -277,7 +277,8 @@
         </template>
         <template #empty>
           <div v-if="!userIsAuthenticated" class="text-center my-2">
-            No matching records found. You must be logged in to view proprietary data.
+            No matching records found. 
+            <!-- You must be logged in to view proprietary data. -->
           </div>
           <div v-else class="text-center my-2">
             No matching records found.
@@ -389,11 +390,11 @@ export default {
         { value: '500', text: '500 rows per page' },
       ],
       reductionLevelOptions: [
-        //{ value: 'All', text: 'All' },
-        { value: 'EVA-SmStack', text: 'EVA-SmartStack' },
-        { value: 'EVA-LoStack', text: 'EVA-LongStack' },
-        { value: 'EVA', text: 'EVA' },
-      //  { value: 'Raw', text: 'Raw' },
+        { value: 'All', text: 'All' },
+        { value: 'EVA-SmStack', text: 'EVA-SmartStack (e96)' },
+        { value: 'EVA-LoStack', text: 'EVA-LongStack (e97)' },
+        { value: 'EVA', text: 'EVA (e95)' },
+        { value: 'Raw', text: 'Raw' },
       //  { value: 'ORAC', text: 'ORAC' },
       //  { value: 'NRES Commissioning', text: 'NRES Commissioning' },
       //  { value: 'BANZAI', text: 'BANZAI' },
@@ -469,7 +470,7 @@ export default {
           label: 'Proposal',
           sortable: true,
           hideable: true,
-          hidden: false
+          hidden: true
         },
         {
           key: 'target_name',
@@ -600,17 +601,17 @@ export default {
               //  return[this.filterDateRangeOptions["Last Semester"][0].toJSDate(), this.filterDateRangeOptions["Last Semester"][1].toJSDate()]
               // }
               //},
-              //{text: "Last 7 Days", 
-              // onClick: () => {
-              //  return[this.filterDateRangeOptions["Last 7 Days"][0].toJSDate(), this.filterDateRangeOptions["Last 7 Days"][1].toJSDate()]
-              // }
-              //},
-               {text: "Last 30 Days", 
+              {text: "Last 7 Days", 
+               onClick: () => {
+                return[this.filterDateRangeOptions["Last 7 Days"][0].toJSDate(), this.filterDateRangeOptions["Last 7 Days"][1].toJSDate()]
+               }
+              },
+              {text: "Last 30 Days", 
                onClick: () => {
                 return[this.filterDateRangeOptions["Last 30 Days"][0].toJSDate(), this.filterDateRangeOptions["Last 30 Days"][1].toJSDate()]
                }
               },
-               {text: "All Time", 
+              {text: "All Time", 
                onClick: () => {
                 if (this.allTimeAllowed) {
                   return[this.filterDateRangeOptions["All Time"][0].toJSDate(), this.filterDateRangeOptions["All Time"][1].toJSDate()]
@@ -643,12 +644,12 @@ export default {
           case 'EVA':
             this.queryParams.reduction_level = '95';
             break;
-        //  case 'All':
-        //    this.queryParams.reduction_level = '';
-        //    break;
-        //  case 'Raw':
-        //    this.queryParams.reduction_level = '0';
-        //    break;
+          case 'All':
+            this.queryParams.reduction_level = '';
+            break;
+          case 'Raw':
+            this.queryParams.reduction_level = '0';
+            break;
         // case 'ORAC':
         //    this.queryParams.reduction_level = '90';
         //    break;
@@ -664,7 +665,7 @@ export default {
         //    this.queryParams.reduction_level = '92';
         //    break;
           default:
-            this.queryParams.reduction_level = '96';
+            this.queryParams.reduction_level = '';
         }
       }
     },
@@ -748,7 +749,7 @@ export default {
     },
     onDatePickerChange: function() {
       let start = DateTime.fromJSDate(this.selectedTimeRange[0])
-      let end = DateTime.fromJSDate(this.selectedTimeRange[7])
+      let end = DateTime.fromJSDate(this.selectedTimeRange[1])
       
       this.queryParams.start = start.startOf('day').toFormat(this.getDateFormat());
       this.queryParams.end = end.endOf('day').toFormat(this.getDateFormat());
@@ -905,10 +906,10 @@ export default {
           return 'EVA-LoStack';
         case '95':
           return 'EVA';
-        //case '':
-        //  return 'All';
-        //case '0':
-        //  return 'Raw';
+        case '':
+          return 'All';
+        case '0':
+          return 'Raw';
         //case '90':
         //  return 'ORAC';
         // Due to BANZAI-Imaging and NRES Commissioning sharing the numeric reduction_level 91, we must differentiate them by telescope_id
@@ -921,7 +922,7 @@ export default {
         //case '92':
         //  return 'BANZAI-NRES';
         default:
-          return 'EVA-SmStack';
+          return 'All';
       }
     },
     initializeDefaultQueryParams: function() {
@@ -935,7 +936,7 @@ export default {
         defaultRange = timeRangeFilters['Last 7 Days'];
       }
       const defaultQueryParams = {
-        reduction_level: '96',
+        reduction_level: '',
         proposal_id: '',
         instrument_id: '',
         target_name: '',
