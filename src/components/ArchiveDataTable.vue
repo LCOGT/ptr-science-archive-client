@@ -394,6 +394,12 @@ export default {
         { value: 'EVA-SmStack', text: 'EVA-SmartStack (e96)' },
         { value: 'EVA-LoStack', text: 'EVA-LongStack (e97)' },
         { value: 'EVA', text: 'EVA (e95)' },
+        { value: 'SEA', text: 'SEA Photometry (e81)' },
+        { value: 'SEK', text: 'SEK Photometry (e82)' },
+        { value: 'PSX', text: 'PSX Photometry (e83)' },
+        { value: 'TIF', text: 'TIF (e71)' },
+        { value: 'JPEG', text: 'JPEG (e72)' },
+        { value: 'Thumbnails', text: 'Thumbnails (e73)' },
         { value: 'Raw', text: 'Raw' },
       //  { value: 'ORAC', text: 'ORAC' },
       //  { value: 'NRES Commissioning', text: 'NRES Commissioning' },
@@ -643,6 +649,24 @@ export default {
             break;
           case 'EVA':
             this.queryParams.reduction_level = '95';
+            break;
+          case 'SEA':
+            this.queryParams.reduction_level = '81';
+            break;
+          case 'SEK':
+            this.queryParams.reduction_level = '82';
+            break;
+          case 'PSX':
+            this.queryParams.reduction_level = '83';
+            break;
+          case 'TIF':
+            this.queryParams.reduction_level = '71';
+            break;
+          case 'JPEG':
+            this.queryParams.reduction_level = '72';
+            break;
+          case 'Thumbnails':
+            this.queryParams.reduction_level = '73';
             break;
           case 'All':
             this.queryParams.reduction_level = '';
@@ -906,6 +930,18 @@ export default {
           return 'EVA-LoStack';
         case '95':
           return 'EVA';
+        case '81':
+          return 'SEA';
+        case '82':
+          return 'SEK';
+        case '83':
+          return 'PSX';
+        case '71':
+          return 'TIF';
+        case '72':
+          return 'JPEG';
+        case '73':
+          return 'Thumbnails';
         case '':
           return 'All';
         case '0':
