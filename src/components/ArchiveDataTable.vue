@@ -19,7 +19,7 @@
             >
             <template v-slot:input>
               <div id="date-range-picker" class="border border-secondary rounded p-1 w-100 text-center">
-                Loading Last 7 days<br />
+                Data loaded for:<br />
                 <i class="far fa-calendar"></i> {{ queryParams.start }} <br />
                 <i class="fas fa-caret-down"></i> {{ queryParams.end }}
               </div>
@@ -1125,6 +1125,7 @@ export default {
 #date-range-picker {
   cursor: pointer;
 }
+
 </style>
 <!-- 
 Make table header position relative to avoid horizontal overflow. 
@@ -1160,6 +1161,15 @@ th {
 
 .mx-datepicker-sidebar + .mx-datepicker-content {
   margin-left: 150px;
+}
+.modal-title{
+  color: #ffffff;
+}
+.modal-body{
+  overflow-wrap: anywhere;
+}
+.modal-header{
+  color:#ffffff;
 }
 
 </style>

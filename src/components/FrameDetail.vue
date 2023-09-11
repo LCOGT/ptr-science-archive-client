@@ -7,8 +7,11 @@
     <b-col md="4" cols="12">
       <frame-data :frame-id="frame.id" v-if="dataInspectorViewEnabled"></frame-data>
       <b-button v-b-modal="modalId" variant="outline-secondary" class="my-1" block>View Headers</b-button>
+      <!--<b-button variant="outline-secondary" class="my-1" @click="sendtoPIXLR" block>Send image to PIXLR</b-button>-->
+      <b-button v-b-modal="modalIdLink" variant="outline-secondary" class="my-1" block @click="openLinkModal">Show direct link to file</b-button>
       <b-button variant="outline-secondary" class="my-1" v-if="dataInspectorViewEnabled" @click="openJS9" block>Open FITS in JS9</b-button>
       <headers-modal :modal-id="modalId" :frame-id="frame.id" />
+      <link-modal :modal-id-link="modalIdLink" :frame-url="frame.url" />
       <thumbnail v-if="hasThumbnail" :frame-id="frame.id"></thumbnail>
       <div v-else>No preview available for this filetype</div>
     </b-col>
@@ -18,7 +21,9 @@
 import Thumbnail from '@/components/Thumbnail.vue';
 import RelatedFramesTable from '@/components/RelatedFramesTable.vue';
 import HeadersModal from '@/components/HeadersModal.vue';
+import LinkModal from '@/components/LinkModal.vue';
 import FrameData from '@/components/FrameData.vue';
+/*import ReductionLevels from '@/components/ArchiveDataTable.vue';*/
 
 export default {
   name: 'FrameDetail',
@@ -26,8 +31,9 @@ export default {
     Thumbnail,
     RelatedFramesTable,
     HeadersModal,
-    FrameData
-  },
+    FrameData,
+    LinkModal,
+},
   props: {
     frame: {
       type: Object,
@@ -57,7 +63,13 @@ export default {
     },
     dataInspectorViewEnabled: function() {
       return this.userIsStaff && this.$store.state.inspectorViewEnabled;
-    }
+    },
+    modalIdLink: function() {
+      return `${this.frame.url}`;
+    },
+    /*reductionlevelIF: function() {
+      return this.reductionLevelOptions=='TIF';
+    },*/
   },
   methods: {
     openJS9: function () {
@@ -77,7 +89,15 @@ export default {
         opts.extension = 1;
       }
       JS9.LoadWindow(this.frame.url, opts, 'new');
-    }
+    },
+    sendtoPIXLR: function(){
+      /*PIXLR.LoadWindow(this.frame.url, 'new');*/
+      window.open('https://pixlr.com/e/?image='+this.frame.url,'_blank');
+      
+    },
+    openLinkModal: function() {
+      this.$root.$emit('open-link-modal', this.frame.url);
+    },
   }
 };
 </script>
