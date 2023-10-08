@@ -170,7 +170,7 @@
             <template #button-content>Download {{ selected.length }}</template>
             <b-dropdown-form>
               <b-form-group v-slot="{ ariaDescribedby }">
-                <b-form-radio
+                <!--<b-form-radio
                   v-model="dltype"
                   :disabled="selected.length > maxFunpackedFrames"
                   :aria-describedby="ariaDescribedby"
@@ -178,12 +178,12 @@
                   value="zip-uncompressed">
                   zip download (with uncompressed fits files)
                 </b-form-radio>
-                <b-dropdown-divider />
+                <b-dropdown-divider />-->
                 <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="zip-compressed">
-                  zip download (with fz files)
+                  zip download
                 </b-form-radio>
                 <b-dropdown-divider />
-                <b-form-radio
+               <!--<b-form-radio
                   v-model="dltype"
                   :aria-describedby="ariaDescribedby"
                   name="dltype"
@@ -191,7 +191,7 @@
                 >
                   zip download (catalog only)
                 </b-form-radio>
-                <b-dropdown-divider />
+                <b-dropdown-divider />--> 
                 <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="wget">wget script</b-form-radio>
                 <b-dropdown-divider />
                 <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="framesnumcopy">Copy frame numbers and download CSV file</b-form-radio>
