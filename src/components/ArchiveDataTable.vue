@@ -378,7 +378,7 @@ export default {
     let filterDateRangeOptions = this.getTimeRangeFilters();
     return {
       dltype: 'zip-uncompressed',
-      maxFunpackedFrames: 10,
+      maxFunpackedFrames: 1000,
       selected: [],
       selectedTimeRange: null,
       filterDateRangeOptions: filterDateRangeOptions,
