@@ -195,6 +195,8 @@
                 <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="wget">wget script</b-form-radio>
                 <b-dropdown-divider />
                 <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="framesnumcopy">Copy frame numbers and download CSV file</b-form-radio>
+                <b-dropdown-divider />
+                <b-form-radio v-model="dltype" :aria-describedby="ariaDescribedby" name="dltype" value="framesnumsagemaker">Download code for Sagemaker</b-form-radio>
               </b-form-group>
             </b-dropdown-form>
           </b-dropdown>
@@ -345,7 +347,7 @@ import 'bootstrap-daterangepicker-v2/daterangepicker.css';
 import { OCSMixin, OCSUtil } from 'ocs-component-lib';
 import { DateTime } from 'luxon';
 import { itemInList, removeItemFromList } from '@/util.js';
-import { downloadZip, downloadWget, downloadFrameNum } from '@/download.js';
+import { downloadZip, downloadWget, downloadFrameNum, downloadFrameNumSageMaker } from '@/download.js';
 import AggregatedOptionsSelect from '@/components/AggregatedOptionsSelect.vue';
 import SimpleSelect from '@/components/SimpleSelect.vue';
 import TargetLookup from '@/components/TargetLookup.vue';
@@ -919,6 +921,9 @@ export default {
       }
       else if (this.dltype === 'framesnumcopy') {
         downloadFrameNum(frameIds, archiveToken, this.archiveApiUrl);
+      }
+      else if (this.dltype === 'framesnumsagemaker') {
+        downloadFrameNumSageMaker(frameIds, archiveToken, this.archiveApiUrl);
       }
     },
     getReductionLevelText: function (numericReductionLevel, telescopeId) {
