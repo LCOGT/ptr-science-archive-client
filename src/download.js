@@ -84,7 +84,7 @@ function downloadFrameNumSageMaker(frameIds) {
       navigator.clipboard.writeText(code);
 
       setTimeout(() => {
-        alert("The below code has been generated for SageMaker to download files." + "\n" + "\n" + "Click OK to copy the code to clipboard" + "\n" + `Folder name: ${folderName}` + "\n" + "\n" + code);
+        alert("The below code has been generated for SageMaker to download files to" + "\n" + `Folder name: ${folderName}` + "\n" + "\n" + "Click OK to copy the code to clipboard and then paste in Sagemaker" + "\n" +  "\n" + "\n" + code);
       }, 0);
     }
   });
