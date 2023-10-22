@@ -26,7 +26,7 @@
             </template>
           </date-picker>
         </b-form-group>
-        <!--<aggregated-options-select
+        <aggregated-options-select
           id="proposals"
           v-model="queryParams.proposal_id"
           :options="categorizedAggregatedOptions.proposals"
@@ -38,7 +38,7 @@
           @input="refreshData"
         >
           <template #label><b> Proposal </b><sup v-b-tooltip.hover.right class="blue" title="Log in to view your proposals">?</sup> </template>
-        </aggregated-options-select>-->
+        </aggregated-options-select>
 <!--         <b-form-group id="input-group-science-data" class="my-0">
           <b-form-checkbox
             id="checkbox-science-data"
