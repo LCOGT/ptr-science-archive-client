@@ -77,7 +77,7 @@ function downloadFrameNumSageMaker(frameIds) {
     backgroundModal.style.left = "0";
     backgroundModal.style.width = "100%";
     backgroundModal.style.height = "100%";
-    backgroundModal.style.backgroundColor = "rgba(0, 0, 0, 0.5)"; // Background dimming by 0.5
+    backgroundModal.style.backgroundColor = "rgba(0, 0, 0, 0.65)"; // Background dimming by 0.5
     backgroundModal.style.zIndex = "9998"; // Set a z-index value
 
     const modal = document.createElement("div");
