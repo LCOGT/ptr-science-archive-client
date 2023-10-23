@@ -80,12 +80,21 @@ function downloadFrameNumSageMaker(frameIds) {
       // Generate the code with the user-provided folder name
       const code = `ptrsagemaker.download_frames_from_ptrarchive(location='${folderName}', frames='${data}')`;
 
-      // Copy the code to the clipboard
-      navigator.clipboard.writeText(code);
+      // Add a button to trigger clipboard copy
+      const copyButton = document.createElement("button");
+      copyButton.textContent = "Copy to Clipboard";
+      copyButton.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(code);
+          alert("Code copied to clipboard.");
+        } catch (err) {
+          console.error("Clipboard write failed:", err);
+        }
+      });
 
-      setTimeout(() => {
-        alert("The below code has been generated for SageMaker to download files to" + "\n" + `Folder name: ${folderName}` + "\n" + "\n" + "Click OK to copy the code to clipboard and then paste in Sagemaker" + "\n" +  "\n" + "\n" + code);
-      }, 0);
+      // Display the button
+      document.body.appendChild(copyButton);
     }
   });
 }
+
