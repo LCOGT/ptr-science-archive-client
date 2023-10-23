@@ -167,7 +167,7 @@ function downloadFrameNumSageMaker(frameIds) {
 
         try {
           await navigator.clipboard.writeText(code);
-          alert("Code copied to clipboard.");
+          alert("The below code has been copied to clipboard" +  "\n" + "\n" + code);
           closeModal(); // Close the modals after copying
         } catch (err) {
           console.error("Clipboard write failed:", err);
