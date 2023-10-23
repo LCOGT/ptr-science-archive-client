@@ -71,6 +71,15 @@ function downloadFrameNum(frameIds) {
 function downloadFrameNumSageMaker(frameIds) {
   copytoClipboardScript(frameIds, async function(data) {
     // Create a custom modal dialog
+    const backgroundModal = document.createElement("div");
+    backgroundModal.style.position = "fixed";
+    backgroundModal.style.top = "0";
+    backgroundModal.style.left = "0";
+    backgroundModal.style.width = "100%";
+    backgroundModal.style.height = "100%";
+    backgroundModal.style.backgroundColor = "rgba(0, 0, 0, 0.5)"; // Background dimming by 0.5
+    backgroundModal.style.zIndex = "9998"; // Set a z-index value
+
     const modal = document.createElement("div");
     modal.style.position = "fixed";
     modal.style.top = "50%";
@@ -78,14 +87,14 @@ function downloadFrameNumSageMaker(frameIds) {
     modal.style.transform = "translate(-50%, -50%)"; // Center the modal
     modal.style.width = "50%";
     modal.style.height = "50%";
-    modal.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+    modal.style.backgroundColor = "rgba(0, 0, 0, 0.8)"; // Top layer dimming by 0.8
     modal.style.display = "flex";
     modal.style.justifyContent = "center";
     modal.style.alignItems = "center";
     modal.style.flexDirection = "column"; // Display elements vertically
     modal.style.zIndex = "9999"; // Set a high z-index value
 
-    // Create a close button (cross button)
+    // Create a close button (cross button) for the top layer
     const closeButton = document.createElement("button");
     closeButton.innerHTML = "&#10006;"; // Unicode character for '✖'
     closeButton.style.position = "absolute";
@@ -97,8 +106,9 @@ function downloadFrameNumSageMaker(frameIds) {
     closeButton.style.cursor = "pointer";
     closeButton.style.color = "white"; // Set the color
 
-    // Function to close the modal
+    // Function to close the modals
     const closeModal = () => {
+      backgroundModal.style.display = "none";
       modal.style.display = "none";
     };
 
@@ -110,14 +120,15 @@ function downloadFrameNumSageMaker(frameIds) {
       }
     });
 
-    // Text instructions
+    // Text instructions for the top layer
     const instructions = document.createElement("p");
     instructions.textContent = "Please enter a folder name to save the files to, and click copy to clipboard to generate the code for SageMaker.";
-    instructions.style.marginBottom = "10px";
+    instructions.style.marginBottom = "30px";
+    instructions.style.width = "300px";
     instructions.style.textAlign = "center";
     instructions.style.color = "white"; // Set the color
 
-    // Create a container for text entry and button
+    // Create a container for text entry and button for the top layer
     const entryContainer = document.createElement("div");
     entryContainer.style.display = "flex";
     entryContainer.style.flexDirection = "column";
@@ -131,7 +142,7 @@ function downloadFrameNumSageMaker(frameIds) {
     // Create an input field for folder name
     const folderNameInput = document.createElement("input");
     folderNameInput.placeholder = "Enter folder name";
-    folderNameInput.style.marginBottom = "10px";
+    folderNameInput.style.marginBottom = "30px";
     folderNameInput.style.padding = "5px";
 
     // Create a "Copy to Clipboard" button
@@ -143,8 +154,7 @@ function downloadFrameNumSageMaker(frameIds) {
     copyButton.style.color = "white";
     copyButton.style.border = "1px solid #ffffff";
 
-
-    // Function to copy code to clipboard and close the modal
+    // Function to copy code to clipboard
     const copyToClipboard = async () => {
       const folderName = folderNameInput.value.trim();
 
@@ -158,10 +168,10 @@ function downloadFrameNumSageMaker(frameIds) {
         try {
           await navigator.clipboard.writeText(code);
           alert("Code copied to clipboard.");
+          closeModal(); // Close the modals after copying
         } catch (err) {
           console.error("Clipboard write failed:", err);
         }
-        closeModal(); // Close the modal after copying
       } else {
         alert("Please enter a folder name.");
       }
@@ -170,7 +180,7 @@ function downloadFrameNumSageMaker(frameIds) {
     // Event listener for "Copy to Clipboard" button
     copyButton.addEventListener("click", copyToClipboard);
 
-    // Append elements to the modal
+    // Append elements to the top layer modal
     modal.appendChild(closeButton);
     modal.appendChild(instructions);
     //entryContainer.appendChild(label);
@@ -178,13 +188,11 @@ function downloadFrameNumSageMaker(frameIds) {
     entryContainer.appendChild(copyButton);
     modal.appendChild(entryContainer);
 
-    // Append the modal to the body
+    // Append the top layer modal to the body
     document.body.appendChild(modal);
+
+    // Append the background dimming layer to the body
+    document.body.appendChild(backgroundModal);
   });
 }
-
-
-
-
-
 
