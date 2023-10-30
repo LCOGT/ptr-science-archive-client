@@ -66,6 +66,18 @@
             </sup>
           </b-form-checkbox>
         </b-form-group> -->
+        <b-form-group id="user-id">
+          <template #label>
+            <b>User ID</b
+            ><sup
+              v-b-tooltip.hover.right
+              class="blue"
+              title="Search by User ID"
+              >?</sup
+            >
+          </template>
+          <b-form-input v-model="userID" type="text" class="border-secondary my-0"></b-form-input>
+        </b-form-group>
         <b-form-group id="input-group-basename" class="my-1">
           <template #label>
             <b>Image Name</b>
@@ -390,6 +402,7 @@ export default {
         { value: '50', text: '50 rows per page' },
         { value: '100', text: '100 rows per page' },
         { value: '500', text: '500 rows per page' },
+        { value: '1000', text: '1000 rows per page' },
       ],
       reductionLevelOptions: [
         { value: 'All', text: 'All' },
@@ -488,6 +501,13 @@ export default {
           hidden: false
         },
         {
+          key: 'user_id',
+          label: 'User ID',
+          sortable: true,
+          hideable: true,
+          hidden: false
+        },
+        {
           key: 'primary_optical_element',
           label: 'Filter',
           sortable: true,
@@ -581,6 +601,15 @@ export default {
       },
       set: _.debounce(function(newExposureTime) {
         this.queryParams.exposure_time = newExposureTime;
+        this.refreshData();
+      }, 500)
+    },
+    userID: {
+      get: function() {
+        return this.queryParams.user_id;
+      },
+      set: _.debounce(function(newuserID) {
+        this.queryParams.user_id = newuserID;
         this.refreshData();
       }, 500)
     },
@@ -981,6 +1010,7 @@ export default {
         proposal_id: '',
         instrument_id: '',
         target_name: '',
+        user_id: '',
         site_id: '',
         telescope_id: '',
         primary_optical_element: '',
