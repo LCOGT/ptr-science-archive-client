@@ -982,7 +982,7 @@ export default {
           return 'EVA';
         case '93':
           return 'BZESK-SS';
-         case '92':
+        case '92':
           return 'BZESK';
         case '91':
           return 'BANZAI';
