@@ -409,11 +409,15 @@ export default {
         { value: 'EVA-SmStack', text: 'EVA-SmartStack (e96)' },
         { value: 'EVA-LoStack', text: 'EVA-LongStack (e97)' },
         { value: 'EVA', text: 'EVA (e95)' },
+        { value: 'BZESK-SS', text: 'BZESK-SS (e93)' },
+        { value: 'BZESK', text: 'BZESK (e92)' },
+        { value: 'BANZAI', text: 'BANZAI(e91)' },
         { value: 'SEA', text: 'SEA Photometry (e81)' },
         { value: 'SEK', text: 'SEK Photometry (e82)' },
         { value: 'PSX', text: 'PSX Photometry (e83)' },
         { value: 'TIF', text: 'TIF (e71)' },
         { value: 'JPEG', text: 'JPEG (e72)' },
+        { value: 'Small-JPEG', text: 'Small-JPEG (e74)' },
         { value: 'Thumbnails', text: 'Thumbnails (e73)' },
         { value: 'Raw', text: 'Raw' },
       //  { value: 'ORAC', text: 'ORAC' },
@@ -681,6 +685,15 @@ export default {
           case 'EVA':
             this.queryParams.reduction_level = '95';
             break;
+          case 'BZESK-SS':
+            this.queryParams.reduction_level = '93';
+            break;
+          case 'BZESK':
+            this.queryParams.reduction_level = '92';
+            break;
+          case 'BANZAI':
+            this.queryParams.reduction_level = '91';
+            break;
           case 'SEA':
             this.queryParams.reduction_level = '81';
             break;
@@ -695,6 +708,9 @@ export default {
             break;
           case 'JPEG':
             this.queryParams.reduction_level = '72';
+            break;
+          case 'Small-JPEG':
+            this.queryParams.reduction_level = '74';
             break;
           case 'Thumbnails':
             this.queryParams.reduction_level = '73';
@@ -964,6 +980,12 @@ export default {
           return 'EVA-LoStack';
         case '95':
           return 'EVA';
+        case '93':
+          return 'BZESK-SS';
+         case '92':
+          return 'BZESK';
+        case '91':
+          return 'BANZAI';
         case '81':
           return 'SEA';
         case '82':
@@ -974,6 +996,8 @@ export default {
           return 'TIF';
         case '72':
           return 'JPEG';
+        case '74':
+          return 'Small-JPEG';
         case '73':
           return 'Thumbnails';
         case '':
