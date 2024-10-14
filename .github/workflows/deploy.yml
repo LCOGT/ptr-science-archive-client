@@ -34,7 +34,7 @@ jobs:
           flags: 'g'
 
       - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v14
+        uses: einaregilsson/beanstalk-deploy@v22
         with:
           # Input the credentials you used to setup AWS CLI and credentials for the application environment
           application_name: ptr-science-archive-client
